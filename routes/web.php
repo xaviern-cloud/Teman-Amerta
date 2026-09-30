@@ -32,7 +32,7 @@ Route::get('/', function () {
 
 // 1. Route untuk menampilkan halaman form login
 Route::get('/login', function () {
-    return view('login_page');
+    return view('auth.login');
 })->name('login');
 
 // 2. Route untuk memproses submit form login
