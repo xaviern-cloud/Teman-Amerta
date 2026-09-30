@@ -10,27 +10,39 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
-    public function register (RegisterRequest $request) {
+    public function register(RegisterRequest $request)
+    {
+        // Menggunakan peran yang dipilih user dari form
         $user = Pengguna::create([
-            'nama' => $request -> nama,
-            'email' => $request -> email,
-            'password' => Hash::make($request->password),
-            'role' => 'customer'
+            'nama'       => $request->nama,
+            'email'      => $request->email,
+            'no_hp'      => $request->no_hp,
+            'peran'      => 'customer', // Diambil dari pilihan form
+            'kata_sandi' => Hash::make($request->password),
         ]);
     }
 
-    public function login (LoginRequest $request) {
-        $credentials = $request->validated() ;
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    public function login(LoginRequest $request){
+    // Mengambil data email dan password yang sudah lolos validasi
+    $credentials = $request->validated();
 
-            return redirect('/');
+    if (Auth::attempt($credentials)) {
+        // Regenerasi session untuk mencegah serangan Session Fixation
+        $request->session()->regenerate();
+        $user = Auth::user();
+
+        // 1. Redirect berdasarkan peran (Opsi B)
+        if ($user->peran === 'admin') {
+            return redirect()->intended('/admin/dashboard');
         }
-        return back() ->withErrors([
-            'email' => 'Email atau Password anda Salah',
-        ]);
+        // Default redirect untuk customer
+        return redirect()->intended('/');
     }
 
+    return back()->withErrors([
+        'email' => 'Email atau Password anda Salah',
+    ])->onlyInput('email');
+}
     public function logout (Request $request) {
         Auth::logout();
 
