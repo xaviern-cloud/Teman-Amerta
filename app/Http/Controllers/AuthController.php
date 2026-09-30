@@ -2,21 +2,38 @@
 
 namespace App\Http\Controllers;
 
-class AuthController extends CartController{
-    public function artery () {
-        echo "=== Laporan Keuangan Perusahaan QUANTUM === <br>";
-        echo "line 2";
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller {
+    public function register (RegisterRequest $request) {
+        $user = User::create([
+            'nama' => $request -> nama,
+            'email' => $request -> email,
+            'password' => Hash::make($request->password),
+            'role' => 'customer'
+        ]);
     }
 
-    public function vena () {
-        echo "Laporan Administratif Perusahaan QUANTUM === <br>";
+    public function login (LoginRequest $request) {
+        $credentials = $request->validated() ;
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect('/');
+        }
+        return back() ->withErrors([
+            'email' => 'Email atau Password anda Salah',
+        ]);
     }
 
-    public function nama_pengguna($nama)
-    {
-        // Memanggil fungsi dari BatchController meskipun beda file
-        $pesanAncaman = $this->nama_partner($nama);
+    public function logout () {
+        Auth::logout();
 
-        return "Halo, Tuan $nama <br>" . $pesanAncaman;
+        return redirect('/');
     }
 }
+
