@@ -19,6 +19,7 @@
         </div>
         <br>
         <button type="submit">Login</button>
+        <button type="register"> <a href="{{ url('/register') }}">>Register</button>
     </form>
 </body>
 </html>
