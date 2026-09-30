@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\starter;
 
-Route::get('/stecu/artery', [AuthController::class, 'artery']);
-Route::get('/stecu/vena', [AuthController::class, 'vena']);
+Route::get('/teman_amerta/register', [AuthController::class, 'register']);
+Route::get('/teman_amerta/starter', [starter::class, 'relay']);
 Route::get('/stecu/{nama}', [AuthController::class, 'nama_pengguna']);
 
