@@ -17,7 +17,6 @@ class RegisterRequest extends FormRequest
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'no_telp' => ['required', 'max:15', 'unique:users,email']
         ];
     }
 }

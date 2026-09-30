@@ -4,8 +4,7 @@
 class starter {
     public function relay () {
         echo "artery play <br>";
-        echo "ervanisynt <br>";
-        echo "mephisto";
+        echo "ervanisynt";
     }
 }
 
