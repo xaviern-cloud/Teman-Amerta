@@ -19,7 +19,7 @@ class TemanAmertaSeeder extends Seeder
                 'deskripsi' => 'Kategori produk TemanAmerta',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ], 'id_kategori');
+            ]);
         }
 
         //2. PRODUK
@@ -131,7 +131,7 @@ class TemanAmertaSeeder extends Seeder
                 'id_kategori' => $idKategori[$item['kategori']],
                 'created_at' => now(),
                 'updated_at' => now(),
-            ], 'id_produk');
+            ]);
         }
 
 
