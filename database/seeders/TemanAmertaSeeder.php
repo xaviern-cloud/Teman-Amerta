@@ -10,7 +10,7 @@ class TemanAmertaSeeder extends Seeder
     public function run(): void
     {
         //1. KATEGORI
-        $kategori = ['Pakaian','Atribut','Penugasan PKKMB Universitas','Penugasan PKKMB Fakultas',];
+        $kategori = ['Pakaian','Atribut','Penugasan AMERTA','Penugasan Fakultas',];
 
         $idKategori = [];
         foreach ($kategori as $nama) {
@@ -93,7 +93,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Atribut',
             ],
 
-            // PENUGASAN PKKMB UNIVERSITAS
+            // PENUGASAN AMERTA
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
@@ -110,7 +110,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Penugasan PKKMB Universitas',
             ],
 
-            // PENUGASAN PKKMB FAKULTAS
+            // PENUGASAN FAKULTAS
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
@@ -217,12 +217,7 @@ class TemanAmertaSeeder extends Seeder
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | 4. BATCH DUMMY
-        |--------------------------------------------------------------------------
-        */
-
+        //4. BATCH DUMMY
         $idBatch = DB::table('batch')->insertGetId([
             'nama' => 'PKKMB AMERTA 2026 - Batch Dummy',
             'tanggal_mulai' => '2026-09-01',
@@ -232,13 +227,7 @@ class TemanAmertaSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 5. BATCH PRODUK
-        |--------------------------------------------------------------------------
-        */
-
+        //5. BATCH PRODUK
         foreach ($idProduk as $id) {
             DB::table('batch_produk')->insert([
                 'id_batch' => $idBatch,
@@ -247,7 +236,6 @@ class TemanAmertaSeeder extends Seeder
                 'ketersediaan' => true,
             ]);
         }
-
 
         /*
         |--------------------------------------------------------------------------
