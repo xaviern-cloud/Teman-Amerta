@@ -1,0 +1,48 @@
+/* Styling Indikator Kekuatan Password */
+.strength-bar-container {
+    width: 258px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.criteria-list {
+    font-size: 12px;
+    margin-top: 8px;
+    padding-left: 18px;
+    color: #666;
+}
+
+.criteria-list li.valid {
+    color: #2e7d32; /* Hijau jika memenuhi syarat */
+    font-weight: bold;
+}
+
+/* Styling Indikator Konfirmasi Password */
+.match-text {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.match-text.valid {
+    color: #2e7d32; /* Hijau saat cocok */
+}
+
+.match-text.invalid {
+    color: #d32f2f; /* Merah saat belum sama */
+}
