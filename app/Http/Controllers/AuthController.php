@@ -20,9 +20,12 @@ class AuthController extends Controller {
             'peran'      => 'customer', // Diambil dari pilihan form
             'kata_sandi' => Hash::make($request->password),
         ]);
+
+        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Selamat datang.');
     }
 
-    public function login(LoginRequest $request){
+
+    public function login(LoginRequest $request) {
     // Mengambil data email dan password yang sudah lolos validasi
     $credentials = $request->validated();
 
@@ -51,5 +54,7 @@ class AuthController extends Controller {
 
         return redirect('/');
     }
+
+
 }
 
