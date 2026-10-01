@@ -10,33 +10,15 @@
 <body>
     <p></p>Ini adalah halaman katalog</p>
 
-    <div class="flex gap-2">
-    <!-- Tombol Semua Produk -->
-    <button class="filter-btn active" data-category="all">
-        Semua Produk ({{ $totalProduk }})
-    </button>
-
-    <!-- Loop Kategori Dinamis dari Database -->
-    @foreach ($kategoriList as $kategori)
-        <button class="filter-btn" data-category="{{ $kategori->id_kategori }}">
-            {{ $kategori->nama_kategori }} ({{ $kategori->produk_count }})
-        </button>
-    @endforeach
-</div>
-
-<!-- Tombol Filter Kategori Dinamis -->
 <div class="flex gap-2 mb-6">
-    <!-- Tombol Semua Produk -->
-    <a href="{{ route('katalog') }}"
-       class="px-4 py-2 rounded-full border-2 font-bold {{ empty($selectedCategory) || $selectedCategory == 'all' ? 'bg-[#153373] text-white' : 'bg-white text-[#153373] border-[#153373]' }}">
-        Semua Produk ({{ $totalProduk }})
+    <a href="{{ route('katalog') }}">
+        <button>Semua Produk ({{ $totalProduk }})</button>
     </a>
 
     <!-- Loop Kategori dari Database -->
     @foreach ($kategoriList as $kategori)
-        <a href="{{ route('katalog', ['kategori' => $kategori->id_kategori]) }}"
-           class="px-4 py-2 rounded-full border-2 font-bold {{ $selectedCategory == $kategori->id_kategori ? 'bg-[#153373] text-white' : 'bg-white text-[#153373] border-[#153373]' }}">
-            {{ $kategori->nama }} ({{ $kategori->produk_count }})
+        <a href="{{ route('katalog', ['kategori' => $kategori->id_kategori]) }}">
+            <button>{{ $kategori->nama }} ({{ $kategori->produk_count }})</button>
         </a>
     @endforeach
 </div>
