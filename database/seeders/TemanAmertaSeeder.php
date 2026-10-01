@@ -9,21 +9,10 @@ class TemanAmertaSeeder extends Seeder
 {
     public function run(): void
     {
-        /*
-        |--------------------------------------------------------------------------
-        | 1. KATEGORI
-        |--------------------------------------------------------------------------
-        */
-
-        $kategori = [
-            'Pakaian',
-            'Atribut',
-            'Penugasan PKKMB Universitas',
-            'Penugasan PKKMB Fakultas',
-        ];
+        //1. KATEGORI
+        $kategori = ['Pakaian','Atribut','Penugasan PKKMB Universitas','Penugasan PKKMB Fakultas',];
 
         $idKategori = [];
-
         foreach ($kategori as $nama) {
             $idKategori[$nama] = DB::table('kategori')->insertGetId([
                 'nama' => $nama,
@@ -33,18 +22,9 @@ class TemanAmertaSeeder extends Seeder
             ]);
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 2. PRODUK
-        |--------------------------------------------------------------------------
-        */
-
+        //2. PRODUK
         $produk = [
-            // =========================
             // PAKAIAN
-            // =========================
-
             [
                 'nama' => 'Kemeja Putih Cowok',
                 'harga' => 64000,
@@ -96,10 +76,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Pakaian',
             ],
 
-            // =========================
             // ATRIBUT
-            // =========================
-
             [
                 'nama' => 'Hasduk + Ring',
                 'harga' => 14000,
@@ -116,10 +93,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Atribut',
             ],
 
-            // =========================
             // PENUGASAN PKKMB UNIVERSITAS
-            // =========================
-
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
@@ -136,10 +110,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Penugasan PKKMB Universitas',
             ],
 
-            // =========================
             // PENUGASAN PKKMB FAKULTAS
-            // =========================
-
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
@@ -164,15 +135,8 @@ class TemanAmertaSeeder extends Seeder
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | 3. VARIAN PRODUK
-        |--------------------------------------------------------------------------
-        |
-        | Ukuran belum dimasukkan karena masih menunggu guidebook.
-        |
-        */
-
+        //3. VARIAN PRODUK
+        //Ukuran belum dimasukkan karena masih menunggu guidebook.
         $varian = [
             // Celana Panjang Cowok
             [
