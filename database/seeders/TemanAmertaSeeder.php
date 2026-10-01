@@ -216,13 +216,7 @@ class TemanAmertaSeeder extends Seeder
             ]);
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 4. BATCH DUMMY
-        |--------------------------------------------------------------------------
-        */
-
+        //4. BATCH DUMMY
         $idBatch = DB::table('batch')->insertGetId([
             'nama' => 'PKKMB AMERTA 2026 - Batch Dummy',
             'tanggal_mulai' => '2026-09-01',
@@ -232,13 +226,7 @@ class TemanAmertaSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 5. BATCH PRODUK
-        |--------------------------------------------------------------------------
-        */
-
+        //5. BATCH PRODUK
         foreach ($idProduk as $id) {
             DB::table('batch_produk')->insert([
                 'id_batch' => $idBatch,
