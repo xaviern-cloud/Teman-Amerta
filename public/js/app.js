@@ -126,3 +126,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedCategory = button.getAttribute('data-category');
+
+            // 1. Kelola class aktif pada tombol
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // 2. Sembunyikan / tampilkan kartu produk
+            productCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    card.style.display = 'block'; // Atau gunakan card.classList.remove('hidden') jika Tailwind
+                } else {
+                    card.style.display = 'none';  // Atau gunakan card.classList.add('hidden') jika Tailwind
+                }
+            });
+        });
+    });
+});

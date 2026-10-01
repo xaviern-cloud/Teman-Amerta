@@ -10,7 +10,7 @@ class TemanAmertaSeeder extends Seeder
     public function run(): void
     {
         //1. KATEGORI
-        $kategori = ['Pakaian','Atribut','Penugasan PKKMB Universitas','Penugasan PKKMB Fakultas',];
+        $kategori = ['Pakaian','Atribut','Penugasan AMERTA','Penugasan Fakultas',];
 
         $idKategori = [];
         foreach ($kategori as $nama) {
@@ -93,7 +93,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Atribut',
             ],
 
-            // PENUGASAN PKKMB UNIVERSITAS
+            // PENUGASAN AMERTA
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
@@ -110,7 +110,7 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Penugasan PKKMB Universitas',
             ],
 
-            // PENUGASAN PKKMB FAKULTAS
+            // PENUGASAN FAKULTAS
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
@@ -235,7 +235,6 @@ class TemanAmertaSeeder extends Seeder
                 'ketersediaan' => true,
             ]);
         }
-
 
         /*
         |--------------------------------------------------------------------------
