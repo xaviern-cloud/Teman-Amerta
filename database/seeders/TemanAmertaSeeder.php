@@ -216,7 +216,6 @@ class TemanAmertaSeeder extends Seeder
             ]);
         }
 
-
         //4. BATCH DUMMY
         $idBatch = DB::table('batch')->insertGetId([
             'nama' => 'PKKMB AMERTA 2026 - Batch Dummy',
