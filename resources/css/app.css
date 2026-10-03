@@ -1,1 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
 
+/* Kustomisasi Tema / Warna Neobrutalism untuk Tailwind v4 */
+@theme {
+    --color-amerta-navy: #153373;
+    --color-amerta-pink: #D45990;
+    --color-amerta-primary: #153373;
+    --color-amerta-surface: #EBF2FA;
+    --color-amerta-bg: #F4F6F9;
+    --color-amerta-muted: #6B7280;
+    --color-amerta-border: #153373;
+
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom Base Styling */
+body {
+    background-color: var(--color-amerta-bg);
+    color: var(--color-amerta-navy);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+}
+
+/* Custom Utilities Neobrutalism */
+.shadow-neo {
+    box-shadow: 4px 4px 0px 0px #153373;
+}
+.shadow-neo-sm {
+    box-shadow: 2px 2px 0px 0px #153373;
+}
+.shadow-neo-lg {
+    box-shadow: 6px 6px 0px 0px #153373;
+}
+.shadow-neo-pink {
+    box-shadow: 4px 4px 0px 0px #D45990;
+}
+.border-3 {
+    border-width: 3px;
+}
