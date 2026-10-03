@@ -97,24 +97,24 @@ class TemanAmertaSeeder extends Seeder
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
             [
                 'nama' => 'Logbook AMERTA',
                 'harga' => 17000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
             [
                 'nama' => 'Kertas Janji Mahasiswa + Hymne Airlangga',
                 'harga' => 5000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
 
             // PENUGASAN FAKULTAS
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
-                'kategori' => 'Penugasan PKKMB Fakultas',
+                'kategori' => 'Penugasan Fakultas',
             ],
         ];
 
