@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Pengguna;
 
 class ProfileController extends Controller
 {
@@ -37,6 +38,12 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function index()
+    {
+        $penggunaList = Pengguna::all();
+
+        return view('admin.pengguna.index', compact('penggunaList'));
+    }
     /**
      * Delete the user's account.
      */

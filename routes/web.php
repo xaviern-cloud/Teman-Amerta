@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\PenggunaController; // 1. Pastikan controller ini di-import
 use App\Http\Controllers\starter;
 
 /*
@@ -15,6 +15,17 @@ use App\Http\Controllers\starter;
 
 // Relay / Starter Route
 Route::get('/teman_amerta/starter', [starter::class, 'relay']);
+
+// ...
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin_dashboard');
+    })->name('admin.dashboard');
+
+    // 2. Ubah ProfileController::class menjadi PenggunaController::class
+    Route::get('/admin/pengguna', [ProfileController::class, 'index'])->name('admin.pengguna.index');
+});
 
 // --------------------------------------------------------------------------
 // 1. ROUTE PUBLIK / UMUM
@@ -77,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
     // ----------------------------------------------------------------------
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
-            return view('admin_dashboard');
+            return view('admin.dashboard');
         })->name('admin.dashboard');
 
         Route::get('/admin/pengguna', [ProfileController::class, 'index'])->name('admin.pengguna.index');
