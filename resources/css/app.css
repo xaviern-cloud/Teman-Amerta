@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tailwindcss";
 
 /* Kustomisasi Tema / Warna Neobrutalism untuk Tailwind v4 */
