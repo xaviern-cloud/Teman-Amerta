@@ -13,7 +13,7 @@
             <!-- Nav Links Desktop -->
             <nav class="hidden md:flex items-center space-x-6 font-bold text-sm">
                 <a href="/" class="hover:text-amerta-pink transition-colors">Beranda</a>
-                <a href="#katalog" class="hover:text-amerta-pink transition-colors">Katalog Produk</a>
+                <a href="/katalog" class="hover:text-amerta-pink transition-colors">Katalog Produk</a>
                 <a href="/pesanan" class="hover:text-amerta-pink transition-colors">Pesanan Saya</a>
             </nav>
 

@@ -38,7 +38,7 @@
         </header>
 
         <nav class="flex gap-3 overflow-x-auto pb-2" aria-label="Filter kategori produk">
-            <a href="{{ route('catalog.index') }}" @class([
+            <a href="{{ route('pages.catalog.index') }}" @class([
                 'shrink-0 rounded-xl border-2 border-brand-navy px-4 py-2 text-sm font-bold shadow-neo-sm transition',
                 'bg-brand-navy text-white' => blank($selectedCategory ?? null) || ($selectedCategory ?? null) === 'all',
                 'bg-white text-brand-navy hover:bg-surface-muted' => filled($selectedCategory ?? null) && ($selectedCategory ?? null) !== 'all',
@@ -47,7 +47,7 @@
             </a>
 
             @foreach ($catalogCategories as $category)
-                <a href="{{ route('catalog.index', ['kategori' => $category->id_kategori]) }}" @class([
+                <a href="{{ route('pages.catalog.index', ['kategori' => $category->id_kategori]) }}" @class([
                     'shrink-0 rounded-xl border-2 border-brand-navy px-4 py-2 text-sm font-bold shadow-neo-sm transition',
                     'bg-brand-pink text-white' => (string) ($selectedCategory ?? '') === (string) $category->id_kategori,
                     'bg-white text-brand-navy hover:bg-surface-muted' => (string) ($selectedCategory ?? '') !== (string) $category->id_kategori,
@@ -58,19 +58,20 @@
         </nav>
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            @forelse ($catalogProducts as $product)
-                <x-product-card
-                    :name="$product->nama"
-                    :price="$product->harga_dasar"
-                    :category="$product->kategori->nama ?? 'Umum'"
-                    :description="$product->deskripsi ?? null"
-                />
-            @empty
-                <div class="rounded-2xl border-2 border-dashed border-brand-navy/40 bg-white p-10 text-center md:col-span-2 xl:col-span-3">
-                    <p class="font-display text-xl font-bold text-brand-navy">Belum ada produk pada kategori ini.</p>
-                    <p class="mt-2 text-sm font-medium text-slate-500">Pilih kategori lain atau kembali lagi nanti.</p>
-                </div>
-            @endforelse
+    @forelse ($catalogProducts as $product)
+        <x-product-card
+            :title="$product->nama ?? $product->nama_produk"
+            :price="'Rp ' . number_format((float) ($product->harga_dasar ?? $product->harga ?? 0), 0, ',', '.')"
+            :category="$product->kategori->nama ?? $product->kategori->nama_kategori ?? 'Umum'"
+            :is-custom="(bool) ($product->is_custom ?? false)"
+            :href="url('/katalog/' . $product->id_produk)"
+        />
+    @empty
+        <div class="rounded-2xl border-2 border-dashed border-amerta-navy/40 bg-white p-10 text-center md:col-span-2 xl:col-span-3">
+            <p class="font-display text-xl font-bold text-amerta-navy">Belum ada produk pada kategori ini.</p>
+            <p class="mt-2 text-sm font-medium text-slate-500">Pilih kategori lain atau kembali lagi nanti.</p>
         </div>
+    @endforelse
+</div>
     </section>
 </x-layouts.app>

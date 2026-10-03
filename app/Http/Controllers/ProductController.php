@@ -31,6 +31,6 @@ class ProductController extends Controller
 
         $produkList = $query->get();
 
-        return view('katalog', compact('totalProduk', 'kategoriList', 'produkList', 'selectedCategory'));
+        return view('pages.catalog.index', compact('totalProduk', 'kategoriList', 'produkList', 'selectedCategory'));
     }
 }
