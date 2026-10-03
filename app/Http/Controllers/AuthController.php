@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller {
     public function register(RegisterRequest $request)
     {
+        // Menggunakan peran yang dipilih user dari form
         $user = Pengguna::create([
             'nama'       => $request->nama,
             'email'      => $request->email,
@@ -19,8 +20,6 @@ class AuthController extends Controller {
             'peran'      => 'customer', // Diambil dari pilihan form
             'kata_sandi' => Hash::make($request->password),
         ]);
-
-        Auth::login($user);
 
         return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Selamat datang.');
     }
