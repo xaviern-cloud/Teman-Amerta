@@ -4,24 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class TemanAmertaSeeder extends Seeder
 {
     public function run(): void
     {
-
-        //0. AKUN ADMIN
-        DB::table('pengguna')->insert([
-            'nama' => 'Admin TemanAmerta',
-            'email' => 'Admin123@temanamerta.test',
-            'kata_sandi' => Hash::make('admin123'),
-            'peran' => 'ADMIN',
-            'no_hp' => '081234567890',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
         //1. KATEGORI
         $kategori = ['Pakaian','Atribut','Penugasan AMERTA','Penugasan Fakultas',];
 
@@ -110,24 +97,24 @@ class TemanAmertaSeeder extends Seeder
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
-                'kategori' => 'Penugasan AMERTA',
+                'kategori' => 'Penugasan PKKMB Universitas',
             ],
             [
                 'nama' => 'Logbook AMERTA',
                 'harga' => 17000,
-                'kategori' => 'Penugasan AMERTA',
+                'kategori' => 'Penugasan PKKMB Universitas',
             ],
             [
                 'nama' => 'Kertas Janji Mahasiswa + Hymne Airlangga',
                 'harga' => 5000,
-                'kategori' => 'Penugasan AMERTA',
+                'kategori' => 'Penugasan PKKMB Universitas',
             ],
 
             // PENUGASAN FAKULTAS
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
-                'kategori' => 'Penugasan Fakultas',
+                'kategori' => 'Penugasan PKKMB Fakultas',
             ],
         ];
 
