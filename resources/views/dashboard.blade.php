@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>DASHBOARD</h1>
-    <p><a href="{{ url('/katalog') }}"> Katalog Produk</a></p>
-    <p><a href="{{ url('/lacak_pesanan')}}">Lacak Pesanan</a></p>
-    <p><a href="{{ url('/login')}}">Login Disini</a></p>
-    <p><a href="{{ url('/panduan_buku_fakultas')}}">Panduan Buku Fakultas</a></p>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-        <search>
-        <form action="{{ url('/dashboard/search') }}" method="GET">
-            <input type="text" name="query" placeholder="Cari produk...">
-            <button type="submit">Cari</button>
-        </form>
-    <a href="{{ url('/katalog') }}">
-        <button>Lihat Katalog Produk |</button>
-    </a>
-
-    <a href="{{ url('/lacak_pesanan')}}">
-        <button>Lacak Status Pesanan -> </button>
-    </a>
-
-</body>
-</html>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

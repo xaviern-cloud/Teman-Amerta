@@ -1,0 +1,3 @@
+[mcp_servers.laravel-boost]
+command = "C:\\laragon\\bin\\php\\php-8.4.25-Win32-vs17-x64\\php.exe"
+args = ["artisan", "boost:mcp"]
