@@ -4,11 +4,24 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TemanAmertaSeeder extends Seeder
 {
     public function run(): void
     {
+
+        //0. AKUN ADMIN
+        DB::table('pengguna')->insert([
+            'nama' => 'Admin TemanAmerta',
+            'email' => 'Admin123@temanamerta.test',
+            'kata_sandi' => Hash::make('admin123'),
+            'peran' => 'ADMIN',
+            'no_hp' => '081234567890',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         //1. KATEGORI
         $kategori = ['Pakaian','Atribut','Penugasan AMERTA','Penugasan Fakultas',];
 
