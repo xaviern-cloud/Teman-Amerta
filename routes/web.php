@@ -86,10 +86,34 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::middleware([IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::get('/produk/create', function () {
+        return view('admin.produk.create');
+    })->name('create_produk');
+
+    Route::get('/produk/daftar', function () {
+        return view('admin.produk.index');
+    })->name('daftar_produk');
+
+    Route::get('/template-kustom/create', function () {
+        return view('admin.template-custom.create');
+    })->name('create_template_custom');
+
+    Route::get('/template-kustom/daftar', function () {
+        return view('admin.template-custom.index');
+    })->name('index_template_custom');
+
+    Route::get('/batch/daftar', function () {
+        return view('admin.batch.index');
+    })->name('index_batch');
+
+    Route::get('/batch/create', function () {
+        return view('admin.batch.create');
+    })->name('create_batch');
 
     Route::get('/pengguna', [ProfileController::class, 'index'])->name('pengguna.index');
 
