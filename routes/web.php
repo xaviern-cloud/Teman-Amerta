@@ -39,11 +39,11 @@ Route::get('/teman_amerta/starter', [starter::class, 'relay']);
 Route::middleware('guest')->group(function () {
     // Tampilan Form
     Route::get('/login', function () {
-        return view('pages.auth.login');
+        return view('auth.login');
     })->name('login');
 
     Route::get('/register', function () {
-        return view('pages.auth.register');
+        return view('auth.register');
     })->name('register');
 
     // Proses Form
@@ -95,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.produk.create');
     })->name('create_produk');
 
-    Route::get('/produk/daftar', function () {
+    Route::get('/produk', function () {
         return view('admin.produk.index');
     })->name('daftar_produk');
 
@@ -103,11 +103,11 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.template-custom.create');
     })->name('create_template_custom');
 
-    Route::get('/template-kustom/daftar', function () {
+    Route::get('/template-kustom', function () {
         return view('admin.template-custom.index');
     })->name('index_template_custom');
 
-    Route::get('/batch/daftar', function () {
+    Route::get('/batch', function () {
         return view('admin.batch.index');
     })->name('index_batch');
 
