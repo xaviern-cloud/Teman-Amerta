@@ -91,6 +91,30 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
+    Route::get('/produk/create', function () {
+        return view('admin.produk.create');
+    })->name('create_produk');
+
+    Route::get('/produk', function () {
+        return view('admin.produk.index');
+    })->name('daftar_produk');
+
+    Route::get('/template-kustom/create', function () {
+        return view('admin.template-custom.create');
+    })->name('create_template_custom');
+
+    Route::get('/template-kustom', function () {
+        return view('admin.template-custom.index');
+    })->name('index_template_custom');
+
+    Route::get('/batch', function () {
+        return view('admin.batch.index');
+    })->name('index_batch');
+
+    Route::get('/batch/create', function () {
+        return view('admin.batch.create');
+    })->name('create_batch');
+
     Route::get('/pengguna', [ProfileController::class, 'index'])->name('pengguna.index');
 
     // Wajib gunakan Route::resource agar seluruh route CRUD kategori terbuat otomatis
