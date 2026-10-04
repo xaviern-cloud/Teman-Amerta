@@ -157,6 +157,7 @@
 
     </div>
 
-    <a href="{{ url('/admin/pengguna') }}">Ke Daftar Pengguna</a>
+    <a href="{{ url('/admin/pengguna') }}">Ke Daftar Pengguna</a> <br>
+    <a href="{{ url('/admin/kategori')}}">Ke Daftar Kategori</a>
 
 </x-admin-layout>

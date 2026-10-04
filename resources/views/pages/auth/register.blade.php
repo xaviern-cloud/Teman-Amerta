@@ -43,7 +43,7 @@
 
             {{-- Navigasi Kanan --}}
             <div class="flex items-center gap-4">
-                <a href="{{ route('catalog.index') }}" class="text-xs sm:text-sm font-bold text-[#444650] hover:text-[#001D54] transition-colors flex items-center gap-1.5">
+                <a href="{{ route('pages.catalog.index') }}" class="text-xs sm:text-sm font-bold text-[#444650] hover:text-[#001D54] transition-colors flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                     <span>Kembali ke Katalog</span>
                 </a>
