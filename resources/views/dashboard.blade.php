@@ -21,5 +21,7 @@
     </button>
 </form>
 
+<a href="{{ url('/admin/dashboard') }}">Ke daftar pengguna</a>
+
     </div>
 </x-app-layout>
