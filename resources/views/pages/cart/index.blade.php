@@ -13,7 +13,7 @@
             </div>
             <h2 class="mt-6 font-display text-2xl font-bold text-brand-navy-dark">Keranjangmu masih kosong</h2>
             <p class="mx-auto mt-2 max-w-md text-sm font-medium leading-relaxed text-slate-600">Tambahkan kebutuhan AMERTA dan PKKMB dari katalog. Integrasi penyimpanan keranjang akan ditangani backend nanti.</p>
-            <x-button :href="route('catalog.index')" class="mt-6">Lihat Katalog</x-button>
+            <x-button :href="route('pages.catalog.index')" class="mt-6">Lihat Katalog</x-button>
         </div>
     </section>
 </x-layouts.app>

@@ -13,5 +13,15 @@
                 </div>
             </div>
         </div>
+
+        <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" style="background: none; border: none; padding: 0; color: red; cursor: pointer; text-decoration: underline;">
+        Logout
+    </button>
+</form>
+
+<a href="{{ url('/admin/dashboard') }}">Ke daftar pengguna</a>
+
     </div>
 </x-app-layout>

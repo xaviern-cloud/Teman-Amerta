@@ -36,7 +36,7 @@
         <a href="/" class="font-syne font-extrabold text-xl text-[#001D54] tracking-tight">
             Teman<span class="text-[#A43369]">Amerta</span>
         </a>
-        <a href="{{ route('catalog.index') }}" class="text-xs font-bold text-[#444650] hover:text-[#001D54] flex items-center gap-1 transition-colors">
+        <a href="{{ route('pages.catalog.index') }}" class="text-xs font-bold text-[#444650] hover:text-[#001D54] flex items-center gap-1 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span>Katalog</span>
         </a>
@@ -55,7 +55,7 @@
 
             {{-- Card Auth --}}
             <div class="bg-white rounded-2xl border-2 border-[#001D54] shadow-[5px_5px_0px_#001D54] p-6 sm:p-8 space-y-6">
-                
+
                 {{-- Header Section dengan Font Syne --}}
                 <div class="space-y-2">
                     <div class="inline-flex items-center gap-2 bg-[#001D54] text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-[2px_2px_0px_#001D54]">
@@ -85,12 +85,12 @@
                             <span class="text-[10px] font-semibold text-[#757781]">Wajib diisi</span>
                         </div>
                         <div class="relative flex items-center">
-                            <input 
-                                type="email" 
-                                name="email" 
-                                id="email" 
-                                placeholder="nama@student.unair.ac.id" 
-                                required 
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="nama@student.unair.ac.id"
+                                required
                                 value="{{ old('email') }}"
                                 class="w-full bg-white border-2 border-[#001D54] rounded-xl pl-10 pr-3 py-2.5 text-xs font-bold text-[#001D54] placeholder-[#757781]/60 shadow-[2px_2px_0px_#001D54] focus:outline-none focus:ring-2 focus:ring-[#A43369] transition-all"
                             >
@@ -112,12 +112,12 @@
                             <span class="text-[11px] font-extrabold text-[#757781]">Lupa sandi? Segera hadir</span>
                         </div>
                         <div class="relative flex items-center">
-                            <input 
-                                :type="show ? 'text' : 'password'" 
-                                name="password" 
-                                id="password" 
-                                placeholder="Masukkan kata sandi" 
-                                required 
+                            <input
+                                :type="show ? 'text' : 'password'"
+                                name="password"
+                                id="password"
+                                placeholder="Masukkan kata sandi"
+                                required
                                 class="w-full bg-white border-2 border-[#001D54] rounded-xl pl-10 pr-10 py-2.5 text-xs font-bold text-[#001D54] placeholder-[#757781]/60 shadow-[2px_2px_0px_#001D54] focus:outline-none focus:ring-2 focus:ring-[#A43369] transition-all"
                             >
                             <div class="absolute left-3 text-[#444650]">
@@ -135,10 +135,10 @@
 
                     {{-- Remember Me --}}
                     <div class="flex items-center gap-2 pt-0.5">
-                        <input 
-                            type="checkbox" 
-                            name="remember" 
-                            id="remember" 
+                        <input
+                            type="checkbox"
+                            name="remember"
+                            id="remember"
                             class="w-3.5 h-3.5 rounded border-2 border-[#001D54] text-[#A43369] focus:ring-0 cursor-pointer accent-[#A43369]"
                         >
                         <label for="remember" class="text-xs font-bold text-[#001D54] cursor-pointer">
