@@ -40,4 +40,10 @@ class Pengguna extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getAuthPasswordName()
+{
+    return 'password';
 }
+}
+

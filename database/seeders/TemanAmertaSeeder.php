@@ -12,28 +12,43 @@ class TemanAmertaSeeder extends Seeder
     {
 
         //0. AKUN ADMIN
-        DB::table('pengguna')->insert([
-            'nama' => 'Admin TemanAmerta',
-            'email' => 'Admin123@temanamerta.test',
-            'kata_sandi' => Hash::make('admin123'),
-            'peran' => 'ADMIN',
-            'no_hp' => '081234567890',
-            'created_at' => now(),
+        DB::table('pengguna')->updateOrInsert(
+        ['email' => 'Admin123@temanamerta.test'],
+        [
+        'nama' => 'Admin TemanAmerta',
+        'password' => Hash::make('admin123'),
+        'peran' => 'ADMIN',
+        'no_hp' => '081234567890',
+        'updated_at' => now(),
+        'created_at' => now(),
+        ]
+        );
+
+        
+//1. KATEGORI
+$kategori = [
+    'Pakaian',
+    'Atribut',
+    'Penugasan AMERTA',
+    'Penugasan Fakultas',
+];
+
+$idKategori = [];
+
+foreach ($kategori as $nama) {
+    DB::table('kategori')->updateOrInsert(
+        ['nama' => $nama],
+        [
+            'deskripsi' => 'Kategori produk TemanAmerta',
             'updated_at' => now(),
-        ]);
+            'created_at' => now(),
+        ]
+    );
 
-        //1. KATEGORI
-        $kategori = ['Pakaian','Atribut','Penugasan AMERTA','Penugasan Fakultas',];
-
-        $idKategori = [];
-        foreach ($kategori as $nama) {
-            $idKategori[$nama] = DB::table('kategori')->insertGetId([
-                'nama' => $nama,
-                'deskripsi' => 'Kategori produk TemanAmerta',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ], 'id_kategori');
-        }
+    $idKategori[$nama] = DB::table('kategori')
+        ->where('nama', $nama)
+        ->value('id_kategori');
+}
 
         //2. PRODUK
         $produk = [
@@ -237,7 +252,7 @@ class TemanAmertaSeeder extends Seeder
             'status' => 'ACTIVE',
             'created_at' => now(),
             'updated_at' => now(),
-        ]);
+        ], 'id_batch');
 
         //5. BATCH PRODUK
         foreach ($idProduk as $id) {

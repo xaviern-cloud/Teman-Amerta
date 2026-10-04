@@ -21,7 +21,7 @@
                 <ul class="space-y-2 text-sm font-medium">
                     <li><a href="/" class="text-gray-200 hover:text-amerta-pink transition-colors">Beranda / Katalog</a></li>
                     <li><a href="/cart" class="text-gray-200 hover:text-amerta-pink transition-colors">Keranjang Pemesanan</a></li>
-                    <li><a href="/orders" class="text-gray-200 hover:text-amerta-pink transition-colors">Lacak Pesanan</a></li>
+                    <li><a href="/pesanan" class="text-gray-200 hover:text-amerta-pink transition-colors">Lacak Pesanan</a></li>
                 </ul>
             </div>
 
