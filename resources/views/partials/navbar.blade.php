@@ -12,8 +12,8 @@
         <!-- Nav Links -->
         <div class="hidden md:flex items-center space-x-6 text-sm font-black text-amerta-navy">
             <a href="/" class="hover:text-amerta-pink transition-colors">Beranda</a>
-            <a href="/#katalog" class="hover:text-amerta-pink transition-colors">Katalog Produk</a>
-            <a href="/orders" class="hover:text-amerta-pink transition-colors">Pesanan Saya</a>
+            <a href="/katalog" class="hover:text-amerta-pink transition-colors">Katalog Produk</a>
+            <a href="/cart" class="hover:text-amerta-pink transition-colors">Pesanan Saya</a>
         </div>
 
         <!-- Dynamic Auth State -->
