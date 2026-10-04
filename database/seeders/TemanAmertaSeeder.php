@@ -15,7 +15,7 @@ class TemanAmertaSeeder extends Seeder
         DB::table('pengguna')->insert([
             'nama' => 'Admin TemanAmerta',
             'email' => 'Admin123@temanamerta.test',
-            'kata_sandi' => Hash::make('admin123'),
+            'password' => Hash::make('admin123'),
             'peran' => 'ADMIN',
             'no_hp' => '081234567890',
             'created_at' => now(),

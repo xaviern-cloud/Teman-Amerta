@@ -12,7 +12,7 @@ return new class extends Migration
             $table->increments('id_pengguna');
             $table->string('nama', 150);
             $table->string('email', 255)->unique();
-            $table->string('kata_sandi', 255);
+            $table->string('password', 255);
             $table->string('peran', 20)
                 ->default('CUSTOMER');
             $table->timestamps();

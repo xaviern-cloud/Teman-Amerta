@@ -39,11 +39,11 @@ Route::get('/teman_amerta/starter', [starter::class, 'relay']);
 Route::middleware('guest')->group(function () {
     // Tampilan Form
     Route::get('/login', function () {
-        return view('pages.auth.login');
+        return view('auth.login');
     })->name('login');
 
     Route::get('/register', function () {
-        return view('pages.auth.register');
+        return view('auth.register');
     })->name('register');
 
     // Proses Form
@@ -86,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::middleware([IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
