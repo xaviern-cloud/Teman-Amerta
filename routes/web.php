@@ -5,8 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\starter;
-use App\Http\Middleware\IsAdmin; // Import middleware IsAdmin
+use App\Http\Middleware\IsAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::middleware('guest')->group(function () {
         return view('pages.auth.register');
     })->name('register');
 
-    // Proses Form (Diabaikan dari Breeze, diarahkan ke AuthController Anda)
+    // Proses Form
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
 });
@@ -84,11 +85,15 @@ Route::middleware(['auth'])->group(function () {
     | 4. ROUTE KHUSUS ADMIN (Wajib Login & Peran ADMIN)
     |--------------------------------------------------------------------------
     */
-    Route::middleware([IsAdmin::class])->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard'); // Pastikan file blade ada di resources/views/admin/dashboard.blade.php
-        })->name('admin.dashboard');
+    Route::middleware([IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-        Route::get('/admin/pengguna', [ProfileController::class, 'index'])->name('admin.pengguna.index');
+    Route::get('/pengguna', [ProfileController::class, 'index'])->name('pengguna.index');
+
+    // Wajib gunakan Route::resource agar seluruh route CRUD kategori terbuat otomatis
+    Route::resource('kategori', CategoryController::class);
     });
 });

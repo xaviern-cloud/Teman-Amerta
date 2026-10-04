@@ -17,7 +17,7 @@ class AuthController extends Controller {
             'email'      => $request->email,
             'no_hp'      => $request->no_hp,
             'peran'      => 'customer', // Diambil dari pilihan form
-            'kata_sandi' => Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         Auth::login($user);
