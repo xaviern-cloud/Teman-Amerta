@@ -12,31 +12,34 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller {
     public function register(RegisterRequest $request)
     {
-        // Menggunakan peran yang dipilih user dari form
         $user = Pengguna::create([
             'nama'       => $request->nama,
             'email'      => $request->email,
             'no_hp'      => $request->no_hp,
             'peran'      => 'customer', // Diambil dari pilihan form
-            'kata_sandi' => Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
+
+        Auth::login($user);
+
+        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Selamat datang.');
     }
 
-    public function login(LoginRequest $request){
-    // Mengambil data email dan password yang sudah lolos validasi
+
+    public function login(LoginRequest $request)
+{
     $credentials = $request->validated();
 
     if (Auth::attempt($credentials)) {
-        // Regenerasi session untuk mencegah serangan Session Fixation
         $request->session()->regenerate();
         $user = Auth::user();
 
-        // 1. Redirect berdasarkan peran (Opsi B)
-        if ($user->peran === 'admin') {
-            return redirect()->intended('/admin/dashboard');
+        // Menggunakan strtoupper agar cocok dengan nilai 'ADMIN' di Seeder/Database
+        if (strtoupper($user->peran) === 'ADMIN') {
+            return redirect('/admin/dashboard');
         }
-        // Default redirect untuk customer
-        return redirect()->intended('/');
+
+        return redirect('/');
     }
 
     return back()->withErrors([
@@ -51,5 +54,7 @@ class AuthController extends Controller {
 
         return redirect('/');
     }
+
+
 }
 

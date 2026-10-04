@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-
 class Pengguna extends Authenticatable
 {
     use Notifiable;
@@ -13,31 +12,38 @@ class Pengguna extends Authenticatable
     protected $table = 'pengguna';
     protected $primaryKey = 'id_pengguna';
 
+    /**
+     * Kolom yang diizinkan untuk mass-assignment
+     */
     protected $fillable = [
         'nama',
         'email',
-        'kata_sandi',
-        'peran',
+        'password',
         'no_hp',
+        'peran',
     ];
 
+    /**
+     * Kolom yang disembunyikan saat dikonversi ke Array/JSON
+     */
     protected $hidden = [
-        'kata_sandi',
+        'password',
+        'remember_token',
     ];
 
-    // Mengarahkan password Laravel ke kolom kata_sandi
-    public function getAuthPassword()
+    /**
+     * Casts tipe data
+     */
+    protected function casts(): array
     {
-        return $this->kata_sandi;
+        return [
+            'password' => 'hashed',
+        ];
     }
 
-    public function pesanan()
-    {
-        return $this->hasMany(Pesanan::class, 'id_pengguna');
-    }
-
-    public function keranjang()
-    {
-        return $this->hasOne(Keranjang::class, 'id_pengguna');
-    }
+    public function getAuthPasswordName()
+{
+    return 'password';
 }
+}
+

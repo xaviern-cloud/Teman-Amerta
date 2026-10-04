@@ -4,23 +4,51 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TemanAmertaSeeder extends Seeder
 {
     public function run(): void
     {
-        //1. KATEGORI
-        $kategori = ['Pakaian','Atribut','Penugasan PKKMB Universitas','Penugasan PKKMB Fakultas',];
 
-        $idKategori = [];
-        foreach ($kategori as $nama) {
-            $idKategori[$nama] = DB::table('kategori')->insertGetId([
-                'nama' => $nama,
-                'deskripsi' => 'Kategori produk TemanAmerta',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        //0. AKUN ADMIN
+        DB::table('pengguna')->updateOrInsert(
+        ['email' => 'Admin123@temanamerta.test'],
+        [
+        'nama' => 'Admin TemanAmerta',
+        'password' => Hash::make('admin123'),
+        'peran' => 'ADMIN',
+        'no_hp' => '081234567890',
+        'updated_at' => now(),
+        'created_at' => now(),
+        ]
+        );
+
+        
+//1. KATEGORI
+$kategori = [
+    'Pakaian',
+    'Atribut',
+    'Penugasan AMERTA',
+    'Penugasan Fakultas',
+];
+
+$idKategori = [];
+
+foreach ($kategori as $nama) {
+    DB::table('kategori')->updateOrInsert(
+        ['nama' => $nama],
+        [
+            'deskripsi' => 'Kategori produk TemanAmerta',
+            'updated_at' => now(),
+            'created_at' => now(),
+        ]
+    );
+
+    $idKategori[$nama] = DB::table('kategori')
+        ->where('nama', $nama)
+        ->value('id_kategori');
+}
 
         //2. PRODUK
         $produk = [
@@ -93,28 +121,28 @@ class TemanAmertaSeeder extends Seeder
                 'kategori' => 'Atribut',
             ],
 
-            // PENUGASAN PKKMB UNIVERSITAS
+            // PENUGASAN AMERTA
             [
                 'nama' => 'ID Card AMERTA',
                 'harga' => 14000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
             [
                 'nama' => 'Logbook AMERTA',
                 'harga' => 17000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
             [
                 'nama' => 'Kertas Janji Mahasiswa + Hymne Airlangga',
                 'harga' => 5000,
-                'kategori' => 'Penugasan PKKMB Universitas',
+                'kategori' => 'Penugasan AMERTA',
             ],
 
-            // PENUGASAN PKKMB FAKULTAS
+            // PENUGASAN FAKULTAS
             [
                 'nama' => 'ID Card Fakultas',
                 'harga' => 16000,
-                'kategori' => 'Penugasan PKKMB Fakultas',
+                'kategori' => 'Penugasan Fakultas',
             ],
         ];
 
@@ -131,7 +159,7 @@ class TemanAmertaSeeder extends Seeder
                 'id_kategori' => $idKategori[$item['kategori']],
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
+            ], 'id_produk');
         }
 
 
@@ -224,7 +252,7 @@ class TemanAmertaSeeder extends Seeder
             'status' => 'ACTIVE',
             'created_at' => now(),
             'updated_at' => now(),
-        ]);
+        ], 'id_batch');
 
         //5. BATCH PRODUK
         foreach ($idProduk as $id) {
@@ -235,7 +263,6 @@ class TemanAmertaSeeder extends Seeder
                 'ketersediaan' => true,
             ]);
         }
-
 
         /*
         |--------------------------------------------------------------------------

@@ -1,52 +1,123 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\starter;
+use App\Http\Middleware\IsAdmin;
 
-Route::get('/teman_amerta/register', [AuthController::class, 'register']);
+/*
+|--------------------------------------------------------------------------
+| 1. ROUTE PUBLIK / UMUM
+|--------------------------------------------------------------------------
+*/
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/pesanan', function () {
+    return view('pages.order.track');
+})->name('home.pesanan');
+
+Route::get('/katalog', [ProductController::class, 'index'])->name('pages.catalog.index');
+
+Route::get('/panduan_buku_fakultas', function () {
+    return view('panduan_buku_fakultas');
+})->name('panduan_buku_fakultas');
+
 Route::get('/teman_amerta/starter', [starter::class, 'relay']);
 
 
-// 1. Route untuk menampilkan halaman form login
-Route::get('/register', function () {
-    return view('regist_page');
-})->name('register');
+/*
+|--------------------------------------------------------------------------
+| 2. ROUTE AUTHENTICATION (Custom AuthController)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('guest')->group(function () {
+    // Tampilan Form
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
 
-// 2. Route untuk memproses submit form login
-Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/register', function () {
+        return view('auth.register');
+    })->name('register');
 
-// 3. Route halaman utama (tujuan setelah login sukses)
-Route::get('/', function () {
-
-    if (Auth::check()) {
-        $user = Auth::user();
-        return "Berhasil Register! Selamat datang, " . $user->nama;
-    }
-    return "Kamu belum Register. <a href='/login'>Klik di sini untuk Login</a>";
+    // Proses Form
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
+/*
+|--------------------------------------------------------------------------
+| 3. ROUTE AUTHENTICATED (Wajib Login - Peran Customer & Admin)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
 
-// 1. Route untuk menampilkan halaman form login
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+    // Dashboard User Biasa
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware('verified')->name('dashboard');
 
-// 2. Route untuk memproses submit form login
-Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/lacak_pesanan', function () {
+        return view('lacak_pesanan');
+    })->name('lacak_pesanan');
 
-// 3. Route halaman utama (tujuan setelah login sukses)
-Route::get('/', function () {
+    Route::get('/cart', function () {
+        return view('pages.cart.index');
+    })->name('cart.index');
 
-    if (Auth::check()) {
-        $user = Auth::user();
-        return "Berhasil Login! Selamat datang, " . $user->nama;
-    }
-    return "Kamu belum login. <a href='/login'>Klik di sini untuk Login</a>";
+    // Profile Management
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | 4. ROUTE KHUSUS ADMIN (Wajib Login & Peran ADMIN)
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware([IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    Route::get('/produk/create', function () {
+        return view('admin.produk.create');
+    })->name('create_produk');
+
+    Route::get('/produk', function () {
+        return view('admin.produk.index');
+    })->name('daftar_produk');
+
+    Route::get('/template-kustom/create', function () {
+        return view('admin.template-custom.create');
+    })->name('create_template_custom');
+
+    Route::get('/template-kustom', function () {
+        return view('admin.template-custom.index');
+    })->name('index_template_custom');
+
+    Route::get('/batch', function () {
+        return view('admin.batch.index');
+    })->name('index_batch');
+
+    Route::get('/batch/create', function () {
+        return view('admin.batch.create');
+    })->name('create_batch');
+
+    Route::get('/pengguna', [ProfileController::class, 'index'])->name('pengguna.index');
+
+    // Wajib gunakan Route::resource agar seluruh route CRUD kategori terbuat otomatis
+    Route::resource('kategori', CategoryController::class);
+    });
 });
-
-// 4. Route Logout (jika ingin mencoba logout)
-Route::post('/logout', [AuthController::class, 'logout']);
