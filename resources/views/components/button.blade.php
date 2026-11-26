@@ -1,35 +1,28 @@
 @props([
-    'variant' => 'primary', // primary, secondary, pink, ghost
-    'size' => 'md', // sm, md, lg
+    'variant' => 'primary', // primary, secondary, outline, yellow
+    'type' => 'button',
     'href' => null,
-    'type' => 'button'
 ])
 
 @php
-$baseClasses = 'inline-flex items-center justify-center font-bold rounded-lg border-2 border-amerta-navy shadow-neo transition-all hover:translate-x-0.5 hover:translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed';
+    $baseClasses = "inline-flex items-center justify-center gap-2 font-bold transition-all duration-150 rounded-xl border-2 border-[#153373] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none";
+    
+    $variants = [
+        'primary'   => 'bg-[#A43369] text-white shadow-[4px_4px_0px_#153373] hover:bg-[#8e2b5a]',
+        'secondary' => 'bg-[#153373] text-white shadow-[4px_4px_0px_#D45990] hover:bg-[#102759]',
+        'yellow'    => 'bg-[#FFE259] text-[#153373] shadow-[4px_4px_0px_#153373] hover:bg-[#f3d33f]',
+        'outline'   => 'bg-white text-[#153373] shadow-[4px_4px_0px_#153373] hover:bg-gray-50',
+    ];
 
-$sizes = [
-    'sm' => 'px-3 py-1.5 text-xs',
-    'md' => 'px-4 py-2 text-sm',
-    'lg' => 'px-6 py-3 text-base',
-];
-
-$variants = [
-    'primary' => 'bg-amerta-primary text-white hover:bg-amerta-primary-hover',
-    'pink' => 'bg-amerta-pink text-white hover:bg-amerta-pink/90',
-    'secondary' => 'bg-amerta-surface text-amerta-navy hover:bg-amerta-border',
-    'ghost' => 'bg-transparent text-amerta-navy border-transparent shadow-none hover:bg-amerta-surface',
-];
-
-$classes = $baseClasses . ' ' . ($sizes[$size] ?? $sizes['md']) . ' ' . ($variants[$variant] ?? $variants['primary']);
+    $classes = $baseClasses . ' ' . ($variants[$variant] ?? $variants['primary']);
 @endphp
 
-@if ($href)
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
+@if($href)
+    <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes . ' px-5 py-3 text-sm sm:text-base']) }}>
         {{ $slot }}
     </a>
 @else
-    <button type="{{ $type }}" {{ $attributes->merge(['class' => $classes]) }}>
+    <button type="{{ $type }}" {{ $attributes->merge(['class' => $classes . ' px-5 py-3 text-sm sm:text-base']) }}>
         {{ $slot }}
     </button>
 @endif

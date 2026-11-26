@@ -2,35 +2,30 @@
     'label' => null,
     'name' => '',
     'type' => 'text',
-    'error' => null,
-    'value' => null,
+    'placeholder' => '',
+    'required' => false,
+    'helpText' => null,
 ])
 
-@php
-    // Cek error dari prop atau otomatis dari Session Errors Laravel
-    $hasError = $error || ($name && isset($errors) && $errors->has($name));
-    $errorMessage = $error ?? ($name && isset($errors) && $errors->has($name) ? $errors->first($name) : null);
-    
-    // Support otomatis old() value saat validasi gagal
-    $inputValue = old($name, $value ?? $attributes->get('value', ''));
-    
-    $borderClass = $hasError ? 'border-red-500 focus:ring-red-400' : 'border-brand-navy focus:ring-brand-pink';
-@endphp
-
-<div class="w-full">
+<div class="flex flex-col gap-1.5 w-full">
     @if($label)
-        <label for="{{ $name }}" class="block font-bold text-brand-navy mb-1.5 text-sm">
-            {{ $label }}
+        <label for="{{ $name }}" class="text-xs font-extrabold uppercase tracking-wider text-[#153373]">
+            {{ $label }} @if($required) <span class="text-[#A43369]">*</span> @endif
         </label>
     @endif
+
     <input 
         type="{{ $type }}" 
         name="{{ $name }}" 
         id="{{ $name }}"
-        value="{{ $inputValue }}"
-        {{ $attributes->merge(['class' => "w-full px-4 py-2.5 bg-white border-2 rounded-xl shadow-neo-sm focus:outline-none focus:ring-2 transition-all font-medium text-brand-navy placeholder:text-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed $borderClass"]) }}
+        placeholder="{{ $placeholder }}"
+        @if($required) required @endif
+        {{ $attributes->merge([
+            'class' => 'w-full bg-white border-2 border-[#153373] rounded-xl px-4 py-3 text-sm font-semibold text-[#153373] placeholder-[#757781] shadow-[2.5px_2.5px_0px_#153373] focus:outline-none focus:ring-2 focus:ring-[#A43369] transition-all'
+        ]) }}
     >
-    @if($errorMessage)
-        <p class="text-red-500 font-bold text-xs mt-1">{{ $errorMessage }}</p>
+
+    @if($helpText)
+        <span class="text-xs text-[#757781] font-medium">{{ $helpText }}</span>
     @endif
 </div>

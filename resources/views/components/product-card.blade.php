@@ -1,65 +1,48 @@
 @props([
-    'title' => 'Nama Produk',
-    'price' => 'Rp0',
-    'category' => 'Kategori',
-    'image' => null,
-    'hasVariant' => false,
-    'isCustom' => false,
+    'category' => '',
+    'title' => '',
+    'description' => '',
+    'price' => '',
     'badge' => null,
-    'href' => '#'
+    'image' => null,
+    'url' => '#'
 ])
 
-<div class="group bg-amerta-surface border-3 border-amerta-navy rounded-xl overflow-hidden shadow-neo hover:-translate-y-1 hover:shadow-neo-lg transition-all duration-200 flex flex-col justify-between">
+<div class="flex flex-col justify-between bg-white rounded-2xl border-2 border-[#153373] shadow-[4px_4px_0px_#153373] overflow-hidden hover:-translate-y-1 transition-transform duration-200">
     <div>
-        <!-- Gambar Produk & Badge -->
-        <div class="relative h-48 w-full bg-white border-b-3 border-amerta-navy overflow-hidden flex items-center justify-center p-4">
-            @if($image)
-                <img src="{{ $image }}" alt="{{ $title }}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-200">
-            @else
-                <div class="text-amerta-muted text-xs font-bold flex flex-col items-center gap-1">
-                    <svg class="w-10 h-10 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>Foto Produk</span>
-                </div>
+        {{-- Preview Gambar / Slot --}}
+        <div class="relative h-48 bg-[#EFEEEA] border-b-2 border-[#153373] flex items-center justify-center overflow-hidden">
+            @if($badge)
+                <span class="absolute top-3 right-3 bg-[#D45990] text-white text-xs font-semibold px-2.5 py-1 rounded-md border-2 border-[#153373] shadow-[2px_2px_0px_#153373]">
+                    {{ $badge }}
+                </span>
             @endif
 
-            <!-- Custom Badge / Tags -->
-            <div class="absolute top-2 left-2 flex flex-col gap-1 items-start">
-                @if($isCustom)
-                    <span class="bg-amerta-pink text-white text-[10px] font-black px-2 py-0.5 rounded border border-amerta-navy shadow-neo-sm uppercase tracking-wider">
-                        Kustom Data
-                    </span>
-                @endif
-                @if($badge)
-                    <span class="bg-amerta-primary text-white text-[10px] font-black px-2 py-0.5 rounded border border-amerta-navy shadow-neo-sm uppercase tracking-wider">
-                        {{ $badge }}
-                    </span>
-                @endif
-            </div>
+            @if($image)
+                <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-full object-cover">
+            @else
+                <div class="w-12 h-12 rounded-lg bg-[#153373]/10 flex items-center justify-center text-[#153373]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+            @endif
         </div>
 
-        <!-- Info Produk -->
-        <div class="p-4">
-            <span class="text-xs font-bold text-amerta-muted uppercase tracking-wider block mb-1">
-                {{ $category }}
-            </span>
-            <h3 class="font-extrabold text-amerta-navy text-base leading-snug line-clamp-2 mb-2 group-hover:text-amerta-pink transition-colors">
-                <a href="{{ $href }}">{{ $title }}</a>
-            </h3>
+        {{-- Detail Konten --}}
+        <div class="p-5 flex flex-col gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#757781]">{{ $category }}</span>
+            <h3 class="font-syne text-xl font-bold text-[#153373] leading-snug line-clamp-2">{{ $title }}</h3>
+            <p class="text-sm font-medium text-[#444650] leading-relaxed line-clamp-2">{{ $description }}</p>
         </div>
     </div>
 
-    <!-- Pricing & Action Button -->
-    <div class="p-4 pt-0">
-        <div class="flex items-center justify-between mt-2 pt-3 border-t-2 border-amerta-border">
-            <div>
-                <span class="text-[10px] font-bold text-amerta-muted block">Mulai dari</span>
-                <span class="text-base font-black text-amerta-navy">{{ $price }}</span>
-            </div>
-            <x-button href="{{ $href }}" variant="primary" size="sm">
-                Detail
-            </x-button>
+    {{-- Footer Card --}}
+    <div class="p-5 pt-0 flex items-center justify-between mt-4">
+        <div>
+            <span class="text-xs font-medium text-[#757781] block">Harga</span>
+            <span class="font-syne text-xl font-bold text-[#153373]">{{ $price }}</span>
         </div>
+        <a href="{{ $url }}" class="inline-flex items-center justify-center bg-[#153373] text-white text-sm font-bold px-4 py-2.5 rounded-xl border-2 border-[#153373] shadow-[2px_2px_0px_#D45990] hover:bg-[#102759] transition-colors">
+            Pilih / Detail
+        </a>
     </div>
 </div>
